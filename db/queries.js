@@ -10,4 +10,8 @@ async function getByGenre(){
     return genres.rows;
 }
 
-module.exports = { getAllMovies, getByGenre }
+async function addMovie(title,release_year,rating){
+    const newMovie = await pool.query('INSERT INTO movies(title,release_year,rating) values ($1,$2,$3)',[title,release_year,rating]);   
+}
+
+module.exports = { getAllMovies, getByGenre, addMovie }
