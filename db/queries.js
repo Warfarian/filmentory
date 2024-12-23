@@ -5,4 +5,9 @@ async function getAllMovies(){
     return movies.rows;
 }
 
-module.exports = { getAllMovies }
+async function getByGenre(){
+    const genres = await pool.query('SELECT * FROM genres');
+    return genres.rows;
+}
+
+module.exports = { getAllMovies, getByGenre }

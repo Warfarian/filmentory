@@ -7,9 +7,11 @@
 </head>
 <body>
     <h1>Movies available rn</h1>
+    <a href="/">All Films</a>
+    <a href="/genre">Films By genre</a>
     <ul>
         <%movies.map((movie)=>{ %>
-            <li>ID: <%= movie.movie_id%>, Movie name: <%= movie.movie_name%>, Rating: <%= movie.movie_rating%>, Release year: <%= movie.release_year%></li>
+            <li>ID: <%= movie.movie_id%>, Movie name: <%= movie.title%>, Rating: <%= movie.rating%>, Release year: <%= movie.release_year%></li>
         <% }) %>
     </ul>
 </body>

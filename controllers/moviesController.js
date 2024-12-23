@@ -1,4 +1,4 @@
-const { getAllMovies } = require("../db/queries")
+const { getAllMovies, getByGenre } = require("../db/queries")
 
 async function fetchMovies(req,res) {
     try{
@@ -12,4 +12,15 @@ async function fetchMovies(req,res) {
     }
 }
 
-module.exports = { fetchMovies }
+async function fetchByGenre(req,res){
+    try{
+        const genres = await getByGenre();
+        res.render("genre",{genres});
+        console.log(genres);    
+    }
+    catch(error){
+        console.error("Error occured displaying by genre: ", error)
+    }
+}
+
+module.exports = { fetchMovies, fetchByGenre }

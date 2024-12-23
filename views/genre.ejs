@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>By genre</title>
+</head>
+<body>
+    <h1>By genre</h1>
+    <a href="/movies">All Films</a>
+    <ul>
+        <%genres.map((genre)=>{ %>
+            <li>Genre ID: <%= genre.genre_id%>, Genre: <%= genre.name%><li>
+        <% }) %>
+    </ul>
+</body>
+</html>
