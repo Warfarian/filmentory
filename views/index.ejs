@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmentory</title>
+</head>
+<body>
+    <h1>Movies available rn</h1>
+    <ul>
+        <%movies.map((movie)=>{ %>
+            <li>ID: <%= movie.movie_id%>, Movie name: <%= movie.movie_name%>, Rating: <%= movie.movie_rating%>, Release year: <%= movie.release_year%></li>
+        <% }) %>
+    </ul>
+</body>
+</html>
