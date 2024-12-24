@@ -3,8 +3,9 @@ const movieRouter = Router();
 
 const moviesController = require("../controllers/moviesController");
 
+
 movieRouter.get('/', moviesController.fetchMovies);
-movieRouter.get('/genre', moviesController.fetchByGenre);
+movieRouter.get('/genre', moviesController.fetchMoviesByGenre);
 movieRouter.get('/new',moviesController.addMoviesForm);
 movieRouter.post('/', moviesController.createNewMovies);
 movieRouter.post('/:movie_id/delete', moviesController.deleteSelectedMovie);

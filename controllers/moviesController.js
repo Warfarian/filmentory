@@ -1,7 +1,6 @@
 const { getAllMovies, getByGenre, addMovie, deleteMovie, updateMovie} = require("../db/queries")
 const pool = require("../db/pool");
 
-
 async function fetchMovies(req,res) {
     try{
         const movies = await getAllMovies();
@@ -14,37 +13,73 @@ async function fetchMovies(req,res) {
     }
 }
 
-async function fetchByGenre(req,res){
-    try{
-        const genres = await getByGenre();
-        res.render("genre",{genres});
-        console.log(genres);    
-    }
-    catch(error){
-        console.error("Error occurred displaying by genre: ", error)
+async function fetchMoviesByGenre(req, res) {
+    try {
+        const result = await pool.query(`
+            SELECT 
+                genres.genre_id, 
+                genres.name AS genre_name, 
+                movies.title AS movie_title
+            FROM genres
+            LEFT JOIN movie_genres ON genres.genre_id = movie_genres.genre_id
+            LEFT JOIN movies ON movie_genres.movie_id = movies.movie_id
+            ORDER BY genres.name, movies.title;
+        `);
+
+        // Group movies by genres
+        const genres = {};
+        result.rows.forEach((row) => {
+            if (!genres[row.genre_id]) {
+                genres[row.genre_id] = { name: row.genre_name, movies: [] };
+            }
+            if (row.movie_title) {
+                genres[row.genre_id].movies.push(row.movie_title);
+            }
+        });
+
+        res.render("genre", { genres });
+    } catch (error) {
+        console.error("Error fetching movies by genre:", error);
+        res.status(500).send("Internal Server Error");
     }
 }
 
-async function addMoviesForm(req,res){
-    try{
-        res.render("form");
+
+async function addMoviesForm(req, res) {
+    try {
+        // Render the form with default (empty) values for adding a movie
+        res.render("form", {
+            movie_id: null,
+            title: "",
+            release_year: "",
+            rating: ""
+        });
+    } catch (error) {
+        console.error("Error occurred accessing form: ", error);
+        res.status(500).send("Internal Server Error");
     }
-    catch(error){
-        console.error("Error occurred accessing form: ", error)
+}
+    
+
+
+async function createNewMovies(req, res) {
+    const { title, release_year, rating } = req.body;
+
+    try {
+        // Validate required fields
+        if (!title || !release_year || !rating) {
+            return res.status(400).send("All fields are required!");
+        }
+
+        // Add the new movie to the database
+        await addMovie(title, release_year, rating);
+        res.redirect('/'); // Redirect to the list of movies after successful creation
+    } catch (error) {
+        console.error("Error occurred adding a new movie:", error);
+        res.status(500).send("Internal Server Error");
     }
 }
 
-
-async function createNewMovies(req,res) {
-    const { title,release_year,rating } = req.body;
-    try{
-        await addMovie(title,release_year,rating);
-        res.redirect('/');
-    }
-    catch(error){
-        console.error('Error occurred adding a new movie',error);
-    }
-}
 
 async function deleteSelectedMovie(req,res) {
     const { movie_id } = req.params ;
@@ -131,4 +166,4 @@ async function fetchSelectedMovie(movie_id) {
     }
 }
 
-module.exports = { fetchMovies, fetchByGenre, addMoviesForm, createNewMovies, deleteSelectedMovie, updateSelectedMovie, fetchSelectedMovie, renderSearch }
+module.exports = { fetchMovies, fetchMoviesByGenre, addMoviesForm, createNewMovies, deleteSelectedMovie, updateSelectedMovie, fetchSelectedMovie, renderSearch }

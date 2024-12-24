@@ -6,6 +6,8 @@ require("dotenv").config();
 const movieRouter = require("./routes/movieRouter");
 
 const PORT = process.env.PORT || 3000;
+const assetPath = (__dirname,path.join("public"))
+app.use(express.static(assetPath));
 
 app.use(express.urlencoded({ extended: true }));
 

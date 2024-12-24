@@ -1,0 +1,131 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General body styles */
+body {
+    font-family: 'Inter', 'Courier New', Courier, monospace;
+    color: #f5f5f5;
+    padding: 20px;
+    background-color: #121212;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Header styles */
+h1 {
+    color: #e0e0e0;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+/* Links */
+a {
+    background-color: #1f1f1f;
+    color: #f5f5f5;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin: 5px 5px;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+a:hover {
+    background-color: #333333;
+    transform: scale(1.05);
+}
+
+/* List and list items */
+ul {
+    background-color: #1e1e1e;
+    
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #292929;
+    margin-top: 10px;
+    color: #f5f5f5;
+    gap: 10px;
+    list-style-type: none;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Buttons */
+button {
+    padding: 8px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #f5f5f5;
+    background-color: #333333;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #444444;
+    transform: scale(1.05);
+}
+
+/* Form styles */
+form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 500px;
+    background-color: #1f1f1f;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    color: #e0e0e0;
+    font-weight: bold;
+}
+
+input {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #292929;
+    color: #f5f5f5;
+    outline: none;
+}
+
+input:focus {
+    background-color: #333333;
+}
+
+/* Div container styles */
+div {
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #1e1e1e;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}

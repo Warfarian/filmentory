@@ -10,8 +10,18 @@ async function getByGenre(){
     return genres.rows;
 }
 
-async function addMovie(title,release_year,rating){
-    const newMovie = await pool.query('INSERT INTO movies(title,release_year,rating) values ($1,$2,$3)',[title,release_year,rating]);   
+async function addMovie(title, release_year, rating) {
+    try {
+        const query = `
+            INSERT INTO movies (title, release_year, rating) 
+            VALUES ($1, $2, $3)
+        `;
+        await pool.query(query, [title, release_year, rating]);
+        console.log("Movie added successfully!");
+    } catch (error) {
+        console.error("Error occurred in addMovie:", error);
+        throw error; // Re-throw the error to handle it in the caller function
+    }
 }
 
 async function deleteMovie(movie_id){
