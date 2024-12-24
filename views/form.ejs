@@ -3,17 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add movie</title>
+    <title><%= movie_id ? "Update Movie" : "Add Movie" %></title>
 </head>
 <body>
-    <form action="/" method="post">
-        <label for="title">Movie title:</label>
-        <input type="text" name="title" id="title">
+    <h1><%= movie_id ? "Update Movie" : "Add Movie" %></h1>
+    <form action="<%= movie_id ? `/${movie_id}/update` : '/' %>" method="post">
+        <label for="title">Movie Title:</label>
+        <input 
+            type="text" 
+            name="title" 
+            id="title" 
+            value="<%= title || '' %>" 
+            required>
+        
         <label for="rating">Rating:</label>
-        <input type="number" name="rating" id="rating">
-        <label for="release_year">Release year:</label>
-        <input type="number" name="release_year" id="release_year">
-        <button type="submit">Submit</button>
+        <input 
+            type="number" 
+            name="rating" 
+            id="rating" 
+            value="<%= rating || '' %>" 
+            required>
+        
+        <label for="release_year">Release Year:</label>
+        <input 
+            type="number" 
+            name="release_year" 
+            id="release_year" 
+            value="<%= release_year || '' %>" 
+            required>
+        
+        <button type="submit"><%= movie_id ? "Update" : "Add" %></button>
     </form>
 </body>
 </html>

@@ -10,6 +10,11 @@
     <a href="/">All Films</a>
     <a href="/genre">Films By genre</a>
     <a href="/new">Add a new movie</a>
+    <form action="/search" method="get">
+        <label for="search">Search</label>
+        <input type="text" name="search">
+        <button type="submit">Search</button>
+    </form>
     <ul>
         <%movies.map((movie)=>{ %>
             <li>ID: <%= movie.movie_id%>, Movie name: <%= movie.title%>, Rating: <%= movie.rating%>, Release year: <%= movie.release_year%>

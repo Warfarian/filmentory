@@ -14,6 +14,7 @@ app.use('/genre', movieRouter);
 app.use('/new', movieRouter);
 app.use('/:movie_id/delete', movieRouter);
 app.use('/:movie_id/update', movieRouter);
+app.use('/search',movieRouter )
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");

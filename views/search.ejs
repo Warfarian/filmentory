@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Film Details</h1>
+
+    <% if (found) { %>
+        <% movies.forEach(movie => { %>
+            <div>
+                <% found %>
+                <p>Title: <%= movie.title %></p>
+                <p>Rating: <%= movie.rating %></p>
+                <p>Release Year: <%= movie.release_year %></p>
+            </div>
+        <% }); %>
+    <% } else { %>
+        No movies found
+    <% } %>
+</body>
+</html>
