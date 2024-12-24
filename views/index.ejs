@@ -12,7 +12,18 @@
     <a href="/new">Add a new movie</a>
     <ul>
         <%movies.map((movie)=>{ %>
-            <li>ID: <%= movie.movie_id%>, Movie name: <%= movie.title%>, Rating: <%= movie.rating%>, Release year: <%= movie.release_year%></li>
+            <li>ID: <%= movie.movie_id%>, Movie name: <%= movie.title%>, Rating: <%= movie.rating%>, Release year: <%= movie.release_year%>
+                <br>
+                <br>
+                <form action="/<%=movie.movie_id%>/update" method="post">
+                    <button type="submit">Edit</button>
+                </form>
+                <br>
+                <form action="/<%=movie.movie_id%>/delete" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+                <br>
+            </li>
         <% }) %>
     </ul>
 </body>
